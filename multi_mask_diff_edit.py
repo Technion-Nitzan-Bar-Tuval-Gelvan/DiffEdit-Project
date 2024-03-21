@@ -27,7 +27,7 @@ from diff_edit import DiffEdit
 
 
  
-def save_images_as_grid(images_list, grid_size, output_path):
+def save_images_as_grid(images_list, grid_size, output_path, target_size):
     # Calculate the total number of images and ensure it matches the grid size
     total_images = len(images_list)
     if total_images != grid_size[0] * grid_size[1]:
@@ -45,15 +45,16 @@ def save_images_as_grid(images_list, grid_size, output_path):
     for i, img in enumerate(images_list):
         row = i // grid_size[0]
         col = i % grid_size[0]
-        grid_image.paste(img, (col * image_width, row * image_height))
+        resized_img = img.resize(target_size)
+        grid_image.paste(resized_img, (col * image_width, row * image_height))
  
     # Save the grid image
     grid_image.save(output_path)
 
 
 class MultiMaskDiffEdit(DiffEdit):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, device):
+        super().__init__(device)
 
 
     def multiple_masks_diffedit(self, im_path, prompts, generate_output, **kwargs):
@@ -76,4 +77,4 @@ class MultiMaskDiffEdit(DiffEdit):
                 out.append(self.inpaint(prompt=[query_prompt],image=im,mask_image=mask,
                     generator=torch.Generator(self.device).manual_seed(kwargs['seed'])).images[0])
             show_images(out)
-            save_images_as_grid(out, (len(out), 1), 'output_grid_image.jpg')
+            save_images_as_grid(out, (len(out), 1), 'results/output_grid_image.jpg', (64,64))
