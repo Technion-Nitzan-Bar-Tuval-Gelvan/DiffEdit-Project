@@ -22,8 +22,6 @@ from diffusers import AutoencoderKL,UNet2DConditionModel,LMSDiscreteScheduler,St
 
 import cv2
 
-
-
 class DiffEdit:
     def __init__(self, device):
         self.device = device
@@ -80,7 +78,7 @@ class DiffEdit:
         return embeddings
     
     # Given a starting image latent and a prompt; predict the noise that should be removed to transform
-# the noised source image to a denoised image guided by the prompt.
+    # the noised source image to a denoised image guided by the prompt.
     def predict_noise(self, text_embeddings,im_latents,seed=torch.seed(),guidance_scale=7,strength=0.5,**kwargs):
         num_inference_steps = 50            # Number of denoising steps
 
