@@ -162,21 +162,21 @@ class DiffEdit:
     def process_diffedit_mask(self, m,threshold=0.35,**kwargs):
         m = np.array(m).astype(np.float32)
         m = cv2.GaussianBlur(m,(5,5),1)
-        m = (m>(255.*threshold)).astype(np.float32)*255
+        m = (m>(255.*threshold)).astype(np.float32)*255 # binarize
         m = Image.fromarray(m.astype(np.uint8))
         return m
 
     # Given an image latent and two prompts; generate a binarized mask (PIL) appropriate for inpainting
     def calc_diffedit_mask(self, im_latent,p1,p2,**kwargs):
         m = self.calc_diffedit_diff(im_latent,p1,p2,**kwargs)
-        m = self.process_diffedit_mask(m,**kwargs)
+        m = self.process_diffedit_mask(m,**kwargs) # binarize
         m = m.resize((512,512))
         return m
     
     # Composite the mask over the provided image; for demonstration purposes
     def get_blended_mask(self, im, mask_gray): # Both expected to be PIL images
         mask_rgb = mask_gray.convert('RGB')
-        return Image.blend(im,mask_rgb,0.40)
+        return Image.blend(im, mask_rgb, 0.40)
 
     # Show the original image, the original image with mask and the resulting inpainted image
     def demo_diffedit(self, im_path,p1,p2,**kwargs):

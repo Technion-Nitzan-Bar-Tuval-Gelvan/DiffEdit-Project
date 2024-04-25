@@ -134,6 +134,9 @@ class MultiDiffusion(nn.Module):
                     if i < bootstrapping:
                         bg = bootstrapping_backgrounds[torch.randint(0, bootstrapping, (len(prompts) - 1,))]
                         bg = self.scheduler.add_noise(bg, noise[:, :, h_start:h_end, w_start:w_end], t)
+                        # Check the sizes of the tensors
+                        assert latent_view[1:].size(0) == masks_view[1:].size(0), "Size mismatch between latent_view and masks_view"
+                        assert bg.size(0) == (1 - masks_view[1:]).size(0), "Size mismatch between bg and masks_view"
                         latent_view[1:] = latent_view[1:] * masks_view[1:] + bg * (1 - masks_view[1:])
 
                     # expand the latents if we are doing classifier-free guidance to avoid doing two forward passes.
@@ -175,12 +178,12 @@ def preprocess_mask(mask_path, h, w, device):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mask_paths', type=list)
+    parser.add_argument('--mask_paths', default="masks/", type=str, nargs='+')
     # important: it is necessary that SD output high-quality images for the bg/fg prompts.
     parser.add_argument('--bg_prompt', type=str)
     parser.add_argument('--bg_negative', type=str)  # 'artifacts, blurry, smooth texture, bad quality, distortions, unrealistic, distorted image'
-    parser.add_argument('--fg_prompts', type=list)
-    parser.add_argument('--fg_negative', type=list)  # 'artifacts, blurry, smooth texture, bad quality, distortions, unrealistic, distorted image'
+    parser.add_argument('--fg_prompts', type=str, nargs='+')
+    parser.add_argument('--fg_negative', type=str, nargs='+')  # 'artifacts, blurry, smooth texture, bad quality, distortions, unrealistic, distorted image'
     parser.add_argument('--sd_version', type=str, default='2.0', choices=['1.5', '2.0'],
                         help="stable diffusion version")
     parser.add_argument('--H', type=int, default=768)

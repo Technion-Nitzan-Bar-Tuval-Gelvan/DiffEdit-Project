@@ -24,13 +24,14 @@ def main():
     date = datetime.now()
 
     diff_edit = MultiMaskDiffEdit(device=args.cuda_device)
-    prompts = [('Horse','Zebra')]
-            #    ('Grass','Sand')]
+    prompts = [('Horse','Woman'),
+               ('Grass','Sand'),
+               ]
 
     diff_edit.multiple_masks_diffedit(im_path=args.image_path,
                                       prompts=prompts,
                                       seed=args.seed,
-                                      generate_output=False)
+                                      generate_output=True)
 
 
 if __name__ == "__main__":
