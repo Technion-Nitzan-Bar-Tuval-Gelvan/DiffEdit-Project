@@ -56,6 +56,7 @@ def morph_proc_masks(masks, kernel_size=1, iterations=1):
     processed_masks = []
     kernel = np.ones((kernel_size, kernel_size), np.uint8)
     for mask in masks:
+        mask = np.array(mask)
         dilated_mask = cv2.dilate(mask.astype(np.uint8), kernel, iterations=iterations)
         eroded_mask = cv2.erode(dilated_mask.astype(np.uint8), kernel, iterations=iterations)
         proc_mask = Image.fromarray(eroded_mask.astype(np.uint8))
@@ -138,6 +139,7 @@ class MultiMaskDiffEdit(DiffEdit):
         out = []
         masks_list = []
         diff_masks_list = []
+        binary_masks_list = []
 
         im = Image.open(im_path).resize((512,512))
         im_latent = self.image2latent(im)
@@ -152,18 +154,26 @@ class MultiMaskDiffEdit(DiffEdit):
             masks_list.append(diff_mask)
         
         # calculate the difference between masks
+        threshold = 100
         for i in range(len(masks_list)):
+            diff = np.array(masks_list[i], dtype=np.float32)
             for j in range(i+1, len(masks_list)):
-                diff = np.abs(np.array(masks_list[i]) - np.array(masks_list[j]))
-                diff_masks_list.append(Image.fromarray(diff.astype(np.uint8)))
+                # below_threshold = (np.array(masks_list[i], dtype=np.float32) < threshold) & (np.array(masks_list[j], dtype=np.float32) < threshold)
+                below_threshold = (np.array(masks_list[i], dtype=np.float32) < threshold)
+                diff = diff - np.array(masks_list[j], dtype=np.float32)
+                # normalize values between [-255, 255] to [0,255]
+                diff = ((diff - diff.min()) / (diff.max() - diff.min())) * 255
+                diff[below_threshold] = np.array(masks_list[i], dtype=np.float32)[below_threshold]
+                
+            diff_masks_list.append(Image.fromarray(diff.astype(np.uint8)))
         
-        save_images_as_grid(diff_masks_list, (len(diff_masks_list), 1), 'results/before_morph_masks_list.jpg')
-        diff_masks_list = morph_proc_masks(diff_masks_list, kernel_size=3, iterations=2)
-        save_images_as_grid(diff_masks_list, (len(diff_masks_list), 1), 'results/after_morph_masks_list.jpg')
+        # save_images_as_grid(diff_masks_list, (len(diff_masks_list), 1), 'results/before_morph_masks_list.jpg')
+        diff_masks_list = morph_proc_masks(diff_masks_list, kernel_size=2, iterations=1)
+        save_images_as_grid(diff_masks_list, (len(diff_masks_list), 1), 'results/masks_list.jpg')
 
-        for i, mask in enumerate(masks_list):
+        for i, mask in enumerate(diff_masks_list):
             out.append(mask.resize((512,512)))
-            mask = self.process_diffedit_mask(mask, threshold=0.35, **kwargs) # binarize
+            mask = self.process_diffedit_mask(mask, threshold=0.45, **kwargs) # binarize
             
             # m = Image.fromarray(m.astype(np.uint8))
             mask = mask.resize((512,512))
@@ -171,11 +181,11 @@ class MultiMaskDiffEdit(DiffEdit):
             # save masks to files
             os.makedirs('masks', exist_ok=True)
             mask.save(f"masks/mask_{i}.jpg")
-            diff_masks_list.append(mask)
+            binary_masks_list.append(mask)
 
     
         blended_img = im
-        for prompt, mask in zip(prompts, diff_masks_list):
+        for prompt, mask in zip(prompts, binary_masks_list):
             ref_prompt, query_prompt = prompt
             out.append(mask)
             if generate_output:

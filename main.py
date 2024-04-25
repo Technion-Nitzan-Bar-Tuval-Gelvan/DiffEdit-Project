@@ -24,9 +24,17 @@ def main():
     date = datetime.now()
 
     diff_edit = MultiMaskDiffEdit(device=args.cuda_device)
-    prompts = [('Horse','Woman'),
-               ('Grass','Sand'),
+    # horse_scaled.jpg - threshold 
+    prompts = [               
+                ('Grass','Sand'),
+               ('Horse','Zebra'),
                ]
+
+    # fruitbowl_scaled.jpg - threshold 0.45
+    # prompts = [('Chopping board','Frame'),
+    #            ('Fruits','Rice'),
+    #            ('Bowl','Basket'),
+    #            ]
 
     diff_edit.multiple_masks_diffedit(im_path=args.image_path,
                                       prompts=prompts,

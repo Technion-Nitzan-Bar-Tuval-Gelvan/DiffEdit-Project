@@ -160,6 +160,9 @@ class DiffEdit:
     # Try to improve the mask thru convolutions etc
     # assume m is a PIL object containing a grayscale 'diff'
     def process_diffedit_mask(self, m,threshold=0.35,**kwargs):
+        # calculate threshold according to median of mask image m
+        # threshold = np.median(np.array(m).flatten())/255.
+        # threshold = 0.8 * (np.mean(np.array(m).flatten())/255.)
         m = np.array(m).astype(np.float32)
         m = cv2.GaussianBlur(m,(5,5),1)
         m = (m>(255.*threshold)).astype(np.float32)*255 # binarize
