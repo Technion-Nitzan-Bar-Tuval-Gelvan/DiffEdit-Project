@@ -1,4 +1,4 @@
-
+# Based on the code from: https://github.com/johnrobinsn/diffusion_experiments/blob/main/DiffEdit.ipynb
 import os
 import numpy as np
 

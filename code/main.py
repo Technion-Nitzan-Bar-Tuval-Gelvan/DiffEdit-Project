@@ -46,7 +46,9 @@ def main():
     diff_edit.multiple_masks_diffedit(im_path=args.image_path,
                                       prompts=prompts,
                                       seed=args.seed,
-                                      generate_output=True)
+                                      generate_output=True,
+                                      with_subtract=True,
+                                      with_morphological=True)
 
 
 if __name__ == "__main__":
