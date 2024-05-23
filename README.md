@@ -51,5 +51,5 @@ Using inverse sampling from model-estimated noise to provide a noised version of
 - Slides can be found [here](https://github.com/Technion-Nitzan-Bar-Tuval-Gelvan/DiffEdit-Project/blob/main/diffusion_presentation_final_project.pptx)
 
 ## References
-[Couairon, G., Verbeek, J., Schwenk, H. and Cord, M., 2022. Diffedit: Diffusion-based semantic image editing with mask guidance](https://arxiv.org/pdf/2210.11427.pdf)
-[Bar-Tal, O., Yariv, L., Lipman, Y. and Dekel, T., 2023. Multidiffusion: Fusing diffusion paths for controlled image generation](https://arxiv.org/abs/2302.08113)
+1. [Couairon, G., Verbeek, J., Schwenk, H. and Cord, M., 2022. Diffedit: Diffusion-based semantic image editing with mask guidance](https://arxiv.org/pdf/2210.11427.pdf)
+2. [Bar-Tal, O., Yariv, L., Lipman, Y. and Dekel, T., 2023. Multidiffusion: Fusing diffusion paths for controlled image generation](https://arxiv.org/abs/2302.08113)
