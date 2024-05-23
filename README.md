@@ -6,7 +6,7 @@ This is a class project as part of CS236610 - Diffusion Models course @ Technion
 
 <p align="center">
     <a href="https://www.linkedin.com/in/nitzan-bar-9ab896146/">Nitzan Bar</a>  •  
-    <a href="(https://www.linkedin.com/in/tuval-gelvan-ab87b4136/)">Tuval Gelvan</a>
+    <a href="https://www.linkedin.com/in/tuval-gelvan-ab87b4136/">Tuval Gelvan</a>
 </p>
 
 
@@ -41,13 +41,12 @@ Using inverse sampling from model-estimated noise to provide a noised version of
 - Try to improve results by using [Multi-Diffusion paper](https://arxiv.org/abs/2302.08113) approach.
 
 ## Results
-
-![alt text](https://github.com/NitzanShitrit/EEGClassification/blob/main/images/graphs.PNG)
-![alt text](https://github.com/NitzanShitrit/EEGClassification/blob/main/images/table.PNG)
+![alt text](https://github.com/Technion-Nitzan-Bar-Tuval-Gelvan/DiffEdit-Project/blob/main/figures/results1.png)
+![alt text](https://github.com/Technion-Nitzan-Bar-Tuval-Gelvan/DiffEdit-Project/blob/main/figures/results2.png)
 
 
 ## Presentation
-- [Recording]([https://youtu.be/V5hxXmG1A9U](https://www.youtube.com/watch?v=zgE8nUYU-ng&t=3592s)) of in-class project presentation
+- [Recording](https://www.youtube.com/watch?v=zgE8nUYU-ng&t=3592s) of in-class project presentation.
 - Slides can be found [here]()
 
 ## References
