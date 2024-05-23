@@ -88,7 +88,7 @@ class MultiMaskDiffEdit(DiffEdit):
         
         # calculate the difference between masks
         if with_subtract:
-            threshold = 128
+            threshold = 100
             for i in range(len(masks_list)):
                 diff = np.array(masks_list[i], dtype=np.float32)
                 for j in range(i+1, len(masks_list)):
@@ -97,14 +97,15 @@ class MultiMaskDiffEdit(DiffEdit):
                     # normalize values between [-255, 255] to [0,255]
                     diff = ((diff - diff.min()) / (diff.max() - diff.min())) * 255
                     diff[below_threshold] = np.array(masks_list[i], dtype=np.float32)[below_threshold]
-            diff_masks_list.append(Image.fromarray(diff.astype(np.uint8)))
+                diff_masks_list.append(Image.fromarray(diff.astype(np.uint8)))
         else:
             diff_masks_list = masks_list
 
         if with_morphological:
-            diff_masks_list = morph_proc_masks(diff_masks_list, kernel_size=3, iterations=1)
+            diff_masks_list = morph_proc_masks(diff_masks_list, kernel_size=2, iterations=1)
 
         for i, mask in enumerate(diff_masks_list):
+            out.append(mask.resize((512,512)))
             mask = self.process_diffedit_mask(mask, threshold=0.45, **kwargs) # binarize
             mask = mask.resize((512,512))
             out.append(mask)

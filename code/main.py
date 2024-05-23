@@ -3,7 +3,6 @@ import argparse
 from datetime import datetime
 from fastdownload import FastDownload
 from diff_edit import DiffEdit
-# from multi_mask_diff_edit_no_subtract import MultiMaskDiffEdit
 from multi_mask_diff_edit import MultiMaskDiffEdit
 
 def main():
@@ -48,7 +47,7 @@ def main():
                                       seed=args.seed,
                                       generate_output=True,
                                       with_subtract=True,
-                                      with_morphological=True)
+                                      with_morphological=False)
 
 
 if __name__ == "__main__":
