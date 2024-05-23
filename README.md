@@ -47,7 +47,7 @@ Using inverse sampling from model-estimated noise to provide a noised version of
 
 ## Presentation
 - [Recording](https://www.youtube.com/watch?v=zgE8nUYU-ng&t=3592s) of in-class project presentation.
-- Slides can be found [here]()
+- Slides can be found [here](https://github.com/Technion-Nitzan-Bar-Tuval-Gelvan/DiffEdit-Project/blob/main/diffusion_presentation_final_project.pptx)
 
 ## References
 [Couairon, G., Verbeek, J., Schwenk, H. and Cord, M., 2022. Diffedit: Diffusion-based semantic image editing with mask guidance. arXiv preprint arXiv:2210.11427](https://arxiv.org/pdf/2210.11427.pdf)
