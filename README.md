@@ -1,7 +1,6 @@
 # DiffEdit
 
-This project proposes an improvement of a model suggested by the DiffEdit paper: 
-<a href=https://arxiv.org/pdf/2210.11427.pdf>
+This project proposes an improvement of a model suggested by the [DiffEdit paper](https://arxiv.org/pdf/2210.11427.pdf).
 
 This is a class project as part of CS236610 - Diffusion Models course @ Technion.  
 
@@ -14,9 +13,11 @@ This is a class project as part of CS236610 - Diffusion Models course @ Technion
 ## Files in the repository
 |File name         | Purpsoe |
 |----------------------|------|
-|`code/main.py`| main file|
-|`utils.py`| utils functions for loading and pre-processing the data|
-|`images`|  - Jupiter Notebook format|
+|`code/main.py`| main code file|
+|`code/multi_mask_diff_edit.py`| suggested implementation code|
+|`code/Multi_Diffusion.ipynb`|  Multi-Diffusion code - Jupiter Notebook format|
+|`data`|  input images to the model|
+|`results`|  resulted image|
 
 
 ## Introduction
@@ -27,6 +28,7 @@ The main innovations pioneered in DiffEdit are:
 Automated mask inference given the original and new conditioning text using the spatial distribution of the difference in conditioned noise estimates, highlighting the locations that are predicted to change the most between conditioning on the original and new texts.
 Using inverse sampling from model-estimated noise to provide a noised version of the unmasked portion of the input image for each sampling step, as opposed to mixing the unmasked portion with random IID Gaussian noise as in SDEdit and RePaint.
 
+## Suggested Solution
 
 ## Results
 
