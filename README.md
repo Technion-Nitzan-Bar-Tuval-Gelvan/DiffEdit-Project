@@ -1,11 +1,13 @@
 # DiffEdit
 
-This project proposes an improvement of a model suggested by the DiffEdit paper: <a href=https://arxiv.org/pdf/2210.11427.pdf>
+This project proposes an improvement of a model suggested by the DiffEdit paper: 
+<a href=https://arxiv.org/pdf/2210.11427.pdf>
+
 This is a class project as part of CD23611 - Diffusion Models course @ Technion.  
 
 <p align="center">
     <a href="https://www.linkedin.com/in/nitzan-bar-9ab896146/">Nitzan Bar</a>  •  
-    <a href="[https://www.linkedin.com/in/priel-salomon-a6782a1b/](https://www.linkedin.com/in/tuval-gelvan-ab87b4136/)">Tuval Gelvan</a>
+    <a href="(https://www.linkedin.com/in/tuval-gelvan-ab87b4136/)">Tuval Gelvan</a>
 </p>
 
 
@@ -27,10 +29,6 @@ Using inverse sampling from model-estimated noise to provide a noised version of
 
 
 ## Results
-The proposed CNN model was compiled in Google COLAB using PyTorch packages with 200 epochs. 
-The acquired average accuracy through proposed CNN architecture for stimuli evoked EEG signals of classification MindBigData dataset is 21.5%. 
-The loss graph and confusion matrix of the proposed CNN model is shown below.
-The following table describes the comparison between some previous stimuli evoked EEG classification techniques along with their accuracy results and the associated stimuli that were used for acquiring the EEG signals. 
 
 ![alt text](https://github.com/NitzanShitrit/EEGClassification/blob/main/images/graphs.PNG)
 ![alt text](https://github.com/NitzanShitrit/EEGClassification/blob/main/images/table.PNG)
