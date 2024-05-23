@@ -3,7 +3,7 @@
 This project proposes an improvement of a model suggested by the DiffEdit paper: 
 <a href=https://arxiv.org/pdf/2210.11427.pdf>
 
-This is a class project as part of CD23611 - Diffusion Models course @ Technion.  
+This is a class project as part of CS236610 - Diffusion Models course @ Technion.  
 
 <p align="center">
     <a href="https://www.linkedin.com/in/nitzan-bar-9ab896146/">Nitzan Bar</a>  •  
@@ -14,9 +14,9 @@ This is a class project as part of CD23611 - Diffusion Models course @ Technion.
 ## Files in the repository
 |File name         | Purpsoe |
 |----------------------|------|
-|`EEGClassification.ipynb`| main file - Jupiter Notebook format|
+|`code/main.py`| main file|
 |`utils.py`| utils functions for loading and pre-processing the data|
-|`images`| Images used for preview in README.md file|
+|`images`|  - Jupiter Notebook format|
 
 
 ## Introduction
