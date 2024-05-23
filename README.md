@@ -18,6 +18,7 @@ This is a class project as part of CS236610 - Diffusion Models course @ Technion
 |`code/Multi_Diffusion.ipynb`|  Multi-Diffusion code - Jupiter Notebook format|
 |`data`|  input images to the model|
 |`results`|  resulted images|
+|`requirements.txt`|  python packages dependencies|
 
 
 ## Introduction
